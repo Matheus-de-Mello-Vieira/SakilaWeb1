@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>
+            Films
+        </title>
+    </h:head>
+    <h:body>
+        <h:form id="formListFilms">
+            <h:panelGroup layout="block" rendered="#{filmBean.currentState == 'LIST'}">
+
+                <p:commandButton value="New film" action="#{filmBean.newFilm()}"
+                                 update=":formListFilms, :formCreateFilm"/>
+
+                <p:dataTable value="#{filmBean.filmList}" var="film">
+                    <p:column headerText="ID">
+                        #{film.id}
+                    </p:column>
+                    <p:column headerText="Title">
+                        #{film.title}
+                    </p:column>
+                </p:dataTable>
+            </h:panelGroup>
+        </h:form>
+        <h:form id="formCreateFilm">
+            <p:messages/>
+            <h:panelGroup layout="block" rendered="#{filmBean.currentState == 'CREATE'}">
+                <h:panelGrid columns="2">
+                    <p:outputLabel value="Title"/>
+                    <p:inputText value="#{filmBean.film.title}"/>
+                </h:panelGrid>
+                <p:commandButton value="Save" action="#{filmBean.save()}"
+                                 update=":formListFilms,:formCreateFilm"
+                                 process=":formCreateFilm"/>
+            </h:panelGroup>
+        </h:form>
+    </h:body>
+</html>
