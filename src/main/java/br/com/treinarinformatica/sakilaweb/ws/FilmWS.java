@@ -59,7 +59,7 @@ public class FilmWS {
         Map<Integer,Integer> mapRentalCount = filmService.rentalCountPerFilm();
         for (Film film : filmList) {
             FilmWSModel filmWSModel = new FilmWSModel();
-            BeanUtils.copyProperties(filmWSModel,film);
+            BeanUtils.copyProperties(film,filmWSModel);
             filmWSModel.setCountRental(mapRentalCount.get(film.getId()));
             filmWSModelList.add(filmWSModel);
         }

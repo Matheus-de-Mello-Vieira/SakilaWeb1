@@ -38,7 +38,7 @@ public class Inventory implements Serializable {
     @Column(name="last_update")
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdate;
-    @OneToMany(mappedBy = "rental")
+    @OneToMany(mappedBy = "inventory")
     private List<Rental> rentalList;
 
     /**

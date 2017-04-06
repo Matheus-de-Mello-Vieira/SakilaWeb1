@@ -1,1 +1,9 @@
-br/com/treinarinformatica/sakilaweb/model/Film.class
+br\com\treinarinformatica\sakilaweb\model\Film.class
+br\com\treinarinformatica\sakilaweb\model\Rental.class
+br\com\treinarinformatica\sakilaweb\service\FilmService.class
+br\com\treinarinformatica\sakilaweb\ws\FilmWS$1.class
+br\com\treinarinformatica\sakilaweb\ws\ApplicationConfig.class
+br\com\treinarinformatica\sakilaweb\web\FilmBean.class
+br\com\treinarinformatica\sakilaweb\model\Inventory.class
+br\com\treinarinformatica\sakilaweb\ws\FilmWS.class
+br\com\treinarinformatica\sakilaweb\ws\model\FilmWSModel.class
