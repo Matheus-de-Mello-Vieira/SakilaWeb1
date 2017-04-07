@@ -6,7 +6,9 @@
 package br.com.treinarinformatica.sakilaweb.security;
 
 import javax.inject.Inject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.*;
 
@@ -17,12 +19,19 @@ import org.springframework.security.config.annotation.web.configuration.*;
 @Configuration
 @EnableWebSecurity
 @ComponentScan
-public class SecurityConfig extends WebSecurityConfigurerAdapter{
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
     @Inject
     private SakilaAuthenticationProvider sakilaAuthenticationProvider;
-    
+
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder authBuider) {
+        authBuider.authenticationProvider(sakilaAuthenticationProvider);
+    }
+
     @Override
-    protected void configure(HttpSecurity http) throws Exception{
+    protected void configure(HttpSecurity http) throws Exception {
+        http.csrf().disable();
         http.authorizeRequests().antMatchers("/faces/login.xhml")
                 .permitAll()
                 .antMatchers("/faces/**").hasRole("USER")
@@ -42,8 +51,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .passwordParameter("j_password")
                 .defaultSuccessUrl("/faces/films.xhtml")
                 .permitAll()
-                .failureUrl("/faces/login.xtml?erro=1")
+                .failureUrl("/faces/login.xhtml?erro=1")
                 .permitAll();
-                
+
     }
 }
